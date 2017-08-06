@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.mrs;
 
 import javax.persistence.*;
 import java.io.Serializable;

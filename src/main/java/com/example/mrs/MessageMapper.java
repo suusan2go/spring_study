@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.mrs;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
