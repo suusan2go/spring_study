@@ -15,20 +15,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @RequestMapping("messages")
 public class MessagesController {
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    MessageRepository messageRepository;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Message> getMessages() {
-        return jdbcTemplate.query("SELECT text From messages ORDER BY id", (rs, i) -> {
-            Message m = new Message();
-            m.setText(rs.getString("text"));
-            return m;
-        });
+        return messageRepository.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public Message postMessages(@RequestBody Message message) {
-        jdbcTemplate.update("INSERT INTO messages(text) VALUES (?)", message.getText());
-        return message;
+        return messageRepository.save(message);
     }
 }
