@@ -12,6 +12,10 @@ public class Message implements Serializable {
 
     private String text;
 
+    public Integer getId() {
+        return id;
+    }
+
     public String getText() {
         return text;
     }

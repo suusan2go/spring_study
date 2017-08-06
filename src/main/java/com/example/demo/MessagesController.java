@@ -16,14 +16,19 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class MessagesController {
     @Autowired
     MessageRepository messageRepository;
+    @Autowired
+    MessageMapper messageMapper;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Message> getMessages() {
-        return messageRepository.findAll();
+        // return messageRepository.findAll();
+        return messageMapper.findAll();
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public Message postMessages(@RequestBody Message message) {
-        return messageRepository.save(message);
+        // return messageRepository.save(message);
+        messageMapper.create(message);
+        return message;
     }
 }
