@@ -1,4 +1,4 @@
-package com.example.mrs;
+package mrs;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
