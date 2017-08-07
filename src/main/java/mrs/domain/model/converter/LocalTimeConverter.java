@@ -9,7 +9,7 @@ import java.time.LocalTime;
 public class LocalTimeConverter implements AttributeConverter<LocalTime, Time> {
     @Override
     public Time convertToDatabaseColumn(LocalTime time){
-        return time == null ? null : Time.valueOf(time)
+        return time == null ? null : Time.valueOf(time);
     }
 
     @Override
