@@ -11,7 +11,7 @@
 <a th:href="@{'/rooms/' + ${date.plusDays(1)}}">&lt; 翌日</a>
 <ul>
   <li th:each="room: ${rooms}">
-    <a th:href="@{'/reservations/' + ${date} + '/' + ${room.meetingRoom.roomId}"
+    <a th:href="@{'/reservations/' + ${date} + '/' + ${room.meetingRoom.roomId}}"
        th:text="${room.meetingRoom.roomName}"></a>
   </li>
 </ul>
