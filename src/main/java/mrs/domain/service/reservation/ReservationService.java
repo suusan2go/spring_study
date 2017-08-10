@@ -22,7 +22,7 @@ public class ReservationService {
         ReservableRoomId reservableRoomId = reservation.getReservableRoom().getReservableRoomId();
         ReservableRoom reservable = reservableRoomRepository.findOne(reservableRoomId);
         if(reservable == null){
-            throw new UnavalableReservationException("入力の日付・部屋の問い合わせは予約できません");
+            throw new UnavailableReservationException("入力の日付・部屋の問い合わせは予約できません");
         }
         boolean overlap = reservationRepository.findByReservableRoom_ReservableRoomIdOrderByStartTimeAsc(reservableRoomId)
                 .stream()
@@ -36,7 +36,7 @@ public class ReservationService {
 
     public void cancel(Integer reservationId, User requestUser) {
         Reservation reservation = reservationRepository.findOne(reservationId);
-        if (RoleName.ADMIN != requestUser.getRolename() && !Objects.equals(reservation.getUser().getUserID(), requestUser.getUserID())){
+        if (RoleName.ADMIN != requestUser.getRoleName() && !Objects.equals(reservation.getUser().getUserId(), requestUser.getUserId())){
             throw new IllegalStateException("要求されたキャンセルは許可できません");
         }
         reservationRepository.delete(reservation);

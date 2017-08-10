@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Table(name="usr")
 public class User implements Serializable {
     @Id
-    private String userID;
+    private String userId;
 
     private String password;
 
@@ -16,10 +16,10 @@ public class User implements Serializable {
     private String lastName;
 
     @Enumerated(EnumType.STRING)
-    private RoleName rolename;
+    private RoleName roleName;
 
-    public String getUserID() {
-        return userID;
+    public String getUserId() {
+        return userId;
     }
 
     public String getFirstName() {
@@ -30,12 +30,12 @@ public class User implements Serializable {
         return lastName;
     }
 
-    public RoleName getRolename() {
-        return rolename;
+    public RoleName getRoleName() {
+        return roleName;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUserID(String userId) {
+        this.userId = userId;
     }
 
     public void setPassword(String password) {
@@ -50,7 +50,7 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public void setRolename(RoleName rolename) {
-        this.rolename = rolename;
+    public void setRoleName(RoleName roleName) {
+        this.roleName = roleName;
     }
 }
