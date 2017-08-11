@@ -22,7 +22,7 @@
   </select>
   <span th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}" style="color:red">error!</span>
   -
-  <select th:fields="*{endTime}">
+  <select th:field="*{endTime}">
     <option th:each="time : ${timeList}" th:text="${time}" th:value="${time}">10:00</option>
   </select>
   <span th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}" style="color:red">error!</span>

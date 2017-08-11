@@ -11,6 +11,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Documented
 @Constraint(validatedBy = { EndTimeMustBeAfterStartTimeValidator.class })
+@Target({ TYPE, ANNOTATION_TYPE })
+@Retention(RUNTIME)
 public @interface EndTimeMustBeAfterStartTime {
     String message() default "{mrs.app.reservation.EndTimeMustBeAfterStartTime.message}";
 
