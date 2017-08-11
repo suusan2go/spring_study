@@ -13,7 +13,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = { ThirtyMinutesUnitValidator.class })
 @Retention(RUNTIME)
 public @interface ThirtyMinutesUnit {
-    String messsage() default "{mrs.app.reservation.ThirtyMinutesUnit.message}";
+    String message() default "{mrs.app.reservation.ThirtyMinutesUnit.message}";
 
     Class<?>[]groups() default {};
 
