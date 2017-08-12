@@ -89,7 +89,8 @@ public class ReservationsController {
                   Model model) {
         User user = userDetails.getUser();
         try {
-            reservationService.cancel(reservationId, user);
+            Reservation reservation = reservationService.findOne(reservationId);
+            reservationService.cancel(reservation);
         } catch (AccessDeniedException e) {
             model.addAttribute("error", e.getMessage());
             return reserveForm(date, roomId, model);

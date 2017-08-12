@@ -5,6 +5,8 @@ import mrs.domain.repository.reservation.ReservationRepository;
 import mrs.domain.repository.room.ReservableRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.access.method.P;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -35,15 +37,16 @@ public class ReservationService {
         return reservation;
     }
 
-    public void cancel(Integer reservationId, User requestUser) {
-        Reservation reservation = reservationRepository.findOne(reservationId);
-        if (RoleName.ADMIN != requestUser.getRoleName() && !Objects.equals(reservation.getUser().getUserId(), requestUser.getUserId())){
-            throw new AccessDeniedException("要求されたキャンセルは許可できません");
-        }
+    @PreAuthorize("hasRole('ADMIN') or #reservation.user.userId == principal.user.userId")
+    public void cancel(@P("reservation") Reservation reservation) {
         reservationRepository.delete(reservation);
     }
 
     public List<Reservation> findReservations(ReservableRoomId reservableRoomId) {
         return reservationRepository.findByReservableRoom_ReservableRoomIdOrderByStartTimeAsc(reservableRoomId);
+    }
+
+    public Reservation findOne(Integer reservationId) {
+        return reservationRepository.findOne(reservationId);
     }
 }
